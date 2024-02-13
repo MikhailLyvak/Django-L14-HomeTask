@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-6">My anime list</div>
+      <div class="col-6">
+        <div class="d-flex justify-content-end">
+          <a class="btn btn-primary" href="{% url 'app_anime_list:create_anime' %}">Create anime</a>
+          <a class="btn btn-primary" href="{% url 'app_anime_list:create_type' %}">Create type</a>
+        </div>
+      </div>
+    </div> 
+    
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Episodes</th>
+          <th>My rating</th>
+          <th>Anime Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for anime in anime_list %}
+        <tr>
+          <td>{{ anime.name }}</td>
+          <td>
+            {% if not anime.discription %} -==- {% else %} {{ anime.discription
+            }} {% endif %}
+          </td>
+          <td>{{ anime.episodes }}/ {{ anime.my_episode }}</td>
+          <td>{{ anime.my_rating }}</td>
+          <td>{{ anime.type }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}
